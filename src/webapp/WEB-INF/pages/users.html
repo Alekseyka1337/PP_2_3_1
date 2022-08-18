@@ -2,29 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Пользователи</title>
 </head>
 <body>
 <h1>Пользователи:</h1>
 <table border="2">
     <tr>
         <th>Id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Salary</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Зарплата</th>
+        <th>Изменить</th>
+        <th>Удалить</th>
     </tr>
     <tr th:each="user : ${users}">
         <th th:text="${user.getId()}"></th>
         <th th:text="${user.getFirstName()}"></th>
         <th th:text="${user.getLastName()}"></th>
         <th th:text="${user.getSalary()}"></th>
-        <th><a th:href="@{/{id}/edit(id=${user.getId()})}"> edit</a></th>
-        <th><a th:href="@{/{id}/delete(id=${user.getId()})}"> delete</a></th>
+        <th><a th:href="@{/{id}/edit(id=${user.getId()})}">изменить</a></th>
+        <th><a th:href="@{/{id}/delete(id=${user.getId()})}">удалить</a></th>
     </tr>
 </table>
 <hr/>
-<a href="/new"> Create new user</a>
+<a href="/new">Создать нового пользователя</a>
 </body>
 </html>

@@ -2,22 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit user</title>
+    <title>Редактирование пользователя</title>
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
-    <label for="firstName">First name:</label>
+    <label for="firstName">Имя:</label>
     <input type="text" th:field="*{firstName}" id ="firstName">
     <div style="color:red" th:errors="*{firstName}">Name error</div>
     <br/>
-    <label for="lastName">Last name:</label>
+    <label for="lastName">Фамилия:</label>
     <input type="text" th:field="*{lastName}" id ="lastName">
     <br/>
-    <label for="salary">Salary:</label>
+    <label for="salary">Зарплата:</label>
     <input type="text" th:field="*{salary}" id ="salary">
     <div style="color:red" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">Salary error</div>
     <br/>
-    <input  type="submit" value="Update!">
+    <input  type="submit" value="Изменить!">
 </form>
 
 </body>
