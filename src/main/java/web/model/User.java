@@ -10,12 +10,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @NotEmpty(message = "Имя не может быть пустым")
     @Column(name = "name")
     private String firstName;
 
+
     @Column(name = "last_name")
     private String lastName;
+
     @Min(value = 0, message = "Зарплата должна быть больше 0")
     @Column(name = "salary")
     private int salary;

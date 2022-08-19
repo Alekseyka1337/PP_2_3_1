@@ -19,43 +19,43 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/")
-    public String printUsers (Model model) {
+    @GetMapping
+    public String getAllUsers (Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "users";
+        return "getAllUsers";
     }
 
     @GetMapping(value = "/new")
     public String newUser (Model model) {
         model.addAttribute("user", new User());
-        return "new";
+        return "newUser";
     }
 
     @GetMapping(value = "/{id}/edit")
     public String editUser (@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.get(id));
-        return "edit";
+        model.addAttribute("user", userService.getUser(id));
+        return "editUser";
     }
 
-    @GetMapping(value = "/{id}/delete")
+    @DeleteMapping(value = "/{id}/delete")
     public String deleteUser (@PathVariable("id") long id) {
-        userService.delete(id);
+        userService.deleteUser(id);
         return "redirect:/";
     }
     @PostMapping
     public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "new";
+            return "newUser";
         }
-        userService.add(user);
+        userService.createUser(user);
         return "redirect:/";
     }
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "edit";
+            return "editUser";
         }
-        userService.update(user);
+        userService.updateUser(user);
         return "redirect:/";
     }
 }

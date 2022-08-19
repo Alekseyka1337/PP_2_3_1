@@ -1,5 +1,6 @@
 package web.config;
 
+import org.springframework.lang.NonNull;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -27,13 +28,15 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
 
     /* Данный метод указывает url, на котором будет базироваться приложение */
+
+    @NonNull
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
 
     @Override
-    public void onStartup(ServletContext aServletContext) throws ServletException {
+    public void onStartup(@NonNull ServletContext aServletContext) throws ServletException {
         super.onStartup(aServletContext);
         FilterRegistration.Dynamic encodingFilter = aServletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
         encodingFilter.setInitParameter("encoding", "UTF-8");

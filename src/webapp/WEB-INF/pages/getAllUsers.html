@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Пользователи:</h1>
-<table border="2">
+<table border ="2" >
     <tr>
         <th>Id</th>
         <th>Имя</th>
@@ -20,11 +20,17 @@
         <th th:text="${user.getFirstName()}"></th>
         <th th:text="${user.getLastName()}"></th>
         <th th:text="${user.getSalary()}"></th>
-        <th><a th:href="@{/{id}/edit(id=${user.getId()})}">изменить</a></th>
-        <th><a th:href="@{/{id}/delete(id=${user.getId()})}">удалить</a></th>
+        <th><form th:method="GET" th:action="@{/{id}/edit(id=${user.getId()})}">
+            <input type="submit" value="Изменить">
+        </form></th>
+        <th><form th:method="DELETE" th:action="@{/{id}/delete(id=${user.getId()})}">
+            <input type="submit" value="Удалить" style="color: red">
+        </form></th>
     </tr>
 </table>
 <hr/>
-<a href="/new">Создать нового пользователя</a>
+<form th:method="GET" th:action="@{/new}">
+    <input type="submit" value="Создать нового пользователя">
+</form>
 </body>
 </html>
